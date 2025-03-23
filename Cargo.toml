@@ -4,11 +4,12 @@ edition = "2021"
 
 [workspace]
 members = [
-    "host"
-]
+    "host",
+    "guest-std"
+, "covenant-lib"]
 resolver = "2"
 
-#default-members = ["bitvm2-covenant"]
+default-members = ["host", "guest-std"]
 
 [workspace.dependencies]
 #zkm2-sdk = { github = "https://github.com/zkMIPS/zkm2", branch = "dev/init" }

@@ -7,7 +7,9 @@ const ELF: &[u8] = include_elf!("bitvm2-covenant");
 
 fn prove_revm() {
     // 1. split ELF into segs
-    let json_path = env::var("JSON_PATH").unwrap_or("../test-vectors/test.json".to_owned());
+    let manifest_path = std::env::var("CARGO_MANIFEST_DIR").unwrap();
+    let json_path =
+        env::var("JSON_PATH").unwrap_or(format!("{}/../test-vectors/test.json", manifest_path));
     let mut f = File::open(json_path).unwrap();
     let mut data = vec![];
     f.read_to_end(&mut data).unwrap();

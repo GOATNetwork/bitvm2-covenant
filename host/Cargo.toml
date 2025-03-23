@@ -1,5 +1,5 @@
 [package]
-name = "bitvm2-covenant-run"
+name = "bitvm2-covenant-host"
 version.workspace = true
 edition.workspace = true
 
