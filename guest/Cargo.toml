@@ -13,7 +13,6 @@ serde_json = { version = "1.0", default-features = false }
 
 k256 = { version = "0.13.3", features = ["ecdsa"], default-features = false }
 libc = { version = "0.2" , features = ["extra_traits"] }
-hex = "0.4.3"
 zkm2-zkvm = { git = "https://github.com/zkMIPS/zkm2", branch = "dev/init", package = "zkm2-zkvm" }
 
 covenant-lib = { path = "../covenant-lib" }

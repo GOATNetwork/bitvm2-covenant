@@ -153,7 +153,6 @@ name = "bitvm2-covenant"
 version = "1.1.0"
 dependencies = [
  "covenant-lib",
- "hex",
  "k256",
  "libc",
  "models",

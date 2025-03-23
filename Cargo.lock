@@ -822,6 +822,7 @@ dependencies = [
 name = "bitvm2-covenant-host"
 version = "0.0.1"
 dependencies = [
+ "hex",
  "zkm2-build",
  "zkm2-sdk",
 ]

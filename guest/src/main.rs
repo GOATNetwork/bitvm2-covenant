@@ -30,11 +30,6 @@ use revm::primitives::Address;
 zkm2_zkvm::entrypoint!(main);
 
 pub fn main() {
-    ethereum_test();
-}
-
-fn ethereum_test() {
-
     // all private inputs
     // size: 32bytes
     let goat_withdraw_txid: Vec<u8> = zkm2_zkvm::io::read(); 

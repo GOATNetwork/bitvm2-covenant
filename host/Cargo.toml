@@ -5,6 +5,7 @@ edition.workspace = true
 
 [dependencies]
 zkm2-sdk = { workspace = true }
+hex = { workspace = true }
 
 [build-dependencies]
 zkm2-build = { workspace = true }

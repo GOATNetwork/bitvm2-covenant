@@ -10,10 +10,6 @@ use alloc::string::ToString;
 use alloc::vec::Vec;
 
 pub fn main() {
-    ethereum_test();
-}
-
-fn ethereum_test() {
     // all private inputs
     // size: 32bytes
     let goat_withdraw_txid: Vec<u8> =
@@ -37,8 +33,9 @@ fn ethereum_test() {
         hex::decode(std::env::var("PEG_IN_TXID").unwrap_or("32bc8a6c5b3649f92812c461083bab5e8f3fe4516d792bb9a67054ba040b7988".to_string())).unwrap();
 
     //let tx_list: Vec<u8> = zkm2_zkvm::io::read();
+    let manifest_path = std::env::var("CARGO_MANIFEST_DIR").unwrap();
     let json_path = std::env::var("JSON_PATH")
-        .unwrap_or("test-vectors/test.json".to_string());
+        .unwrap_or(format!("{}/../test-vectors/3168249.json", manifest_path));
     let mut f = File::open(json_path).unwrap();
     let mut tx_list = vec![];
     f.read_to_end(&mut tx_list).unwrap();
