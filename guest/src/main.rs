@@ -8,11 +8,11 @@ use revm::{
     primitives::{b256, U256},
 };
 
-use zkm2_zkvm::lib::hasher::Hasher;
+//use zkm2_zkvm::lib::hasher::Hasher;
 
 extern crate libc;
 
-use models::*;
+//use models::*;
 use covenant_lib::{
     recover_address,
     read_suite,

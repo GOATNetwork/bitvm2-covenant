@@ -6,10 +6,6 @@ edition = "2021"
 publish = false
 
 [dependencies]
-#zkm2-zkvm = { github = "https://github.com/zkMIPS/zkm2", branch = "dev/init" }
-zkm2-zkvm = { path = "../../zkm2/crates/zkvm/entrypoint" }
-revm = { git = "https://github.com/zkMIPS/revm", branch = "zkm2", default-features = false, features = [ "serde" ] }
-models = { git = "https://github.com/zkMIPS/revme", package = "models" }
 serde = { version = "1.0", default-features = false, features = ["derive", "rc"] }
 serde_json = { version = "1.0", default-features = false }
 

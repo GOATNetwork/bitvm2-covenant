@@ -1,6 +1,7 @@
+#![no_std]
 use revm::{
     db::CacheState,
-    primitives::U256,
+    primitives::{B256, U256, FixedBytes},
     primitives::{calc_excess_blob_gas, keccak256, Bytecode, Env, SpecId, TransactTo},
     Evm,
 };
@@ -11,6 +12,8 @@ use models::*;
 pub mod utils;
 
 pub use utils::recover_address;
+
+use alloc::format;
 
 extern crate alloc;
 use alloc::boxed::Box;
@@ -23,38 +26,52 @@ use revm::primitives::Address;
 const WITHDRAW_CONFIRMING: u8 = 1;
 
 pub fn read_suite(s: &Vec<u8>) -> TestSuite {
-    let suite: TestUnit = serde_json::from_slice(s).map_err(|e| e).unwrap();
-    let mut btm = BTreeMap::new();
-    btm.insert("test".to_string(), suite);
+    let btm: BTreeMap<String, TestUnit> = serde_json::from_slice(s).unwrap();
     TestSuite(btm)
 }
 
 /// Check withraw txid is included in current suite
 pub fn check_withdraw(
-    contract_addres: &Vec<u8>,
-    _withdraw_txid: &Vec<u8>,
-    withdraw_inner_map_id: u8,
+    contract_address: &Vec<u8>,
+    withdraw_txid: &Vec<u8>,
+    withdraw_map_base_key: &Vec<u8>,
+    withdraw_map_index: &Vec<u8>,
+    peg_in_txid: &Vec<u8>,
     suite: &TestSuite,
 ) -> Result<(), String> {
     // calc slot id: slot=keccak256(key.base_slot)
-    let slot = U256::from(withdraw_inner_map_id);
-    let contract_address = Address::from_slice(contract_addres.as_slice());
+    assert!(withdraw_map_base_key.len() == 32);
+    assert!(withdraw_map_index.len() == 32);
 
-    for (_name, unit) in &suite.0 {
-        for (address, info) in &unit.pre {
-            if **address == *contract_address {
-                let value = info.storage.get(&slot).unwrap();
-                assert!(*value == U256::from(WITHDRAW_CONFIRMING));
-                break;
-            }
-        }
+    let contract_address = Address::from_slice(contract_address.as_slice());
+    let hex_withdraw_txid = format!("0x{}", hex::encode(withdraw_txid));
+    let tx_info: &TestUnit = suite.0.get(&hex_withdraw_txid).unwrap();
+    let post: &Vec<Test> = &tx_info.post.get(&SpecName::Shanghai).unwrap();
+
+    let mut inputs = withdraw_map_base_key.clone();
+    inputs.extend_from_slice(&withdraw_map_index);
+    for t in post {
+        if let Some(acc) = &t.post_state.get(&contract_address) {
+            let slot: B256 = keccak256(&inputs);
+            let actual_peg_in_txid = acc.storage.get(&slot.into()).unwrap(); 
+
+            // NOTE: BE
+            let expected = U256::from_be_slice(&peg_in_txid);
+
+            assert_eq!(expected, *actual_peg_in_txid);
+
+            let slot =  <FixedBytes<32> as Into<U256>>::into(slot) + U256::from(1);
+            let acutal_one = acc.storage.get(&slot).unwrap(); 
+            assert_eq!(*acutal_one, U256::from(1));
+            return Ok(());
+        } 
     }
 
-    Ok(())
+    return Err("Contract is not called in current transaction".to_string());
 }
 
 pub fn execute_test_suite(suite: TestSuite) -> Result<(), String> {
-    for (_name, unit) in suite.0 {
+    for (_txid, unit) in suite.0 {
         // Create database and insert cache
         let mut cache_state = CacheState::new(false);
         for (address, info) in unit.pre {
