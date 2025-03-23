@@ -5,11 +5,12 @@ edition = "2021"
 [workspace]
 members = [
     "host",
-#    "guest-std"
- "covenant-lib"]
+    "guest-std",
+     "covenant-lib"
+]
 resolver = "2"
 
-#default-members = ["host", "guest-std"]
+default-members = ["host", "guest-std"]
 
 [workspace.dependencies]
 zkm2-sdk = { git = "https://github.com/zkMIPS/zkm2", branch = "dev/init" }

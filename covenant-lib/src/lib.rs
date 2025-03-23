@@ -23,8 +23,6 @@ use alloc::string::ToString;
 use alloc::vec::Vec;
 use revm::primitives::Address;
 
-const WITHDRAW_CONFIRMING: u8 = 1;
-
 pub fn read_suite(s: &Vec<u8>) -> TestSuite {
     let btm: BTreeMap<String, TestUnit> = serde_json::from_slice(s).unwrap();
     TestSuite(btm)
@@ -53,7 +51,8 @@ pub fn check_withdraw(
     for t in post {
         if let Some(acc) = &t.post_state.get(&contract_address) {
             let slot: B256 = keccak256(&inputs);
-            let actual_peg_in_txid = acc.storage.get(&slot.into()).unwrap(); 
+            //let actual_peg_in_txid = acc.storage.get(&slot.into()).unwrap(); 
+            let actual_peg_in_txid = acc.storage.get::<U256>(&slot.into()).unwrap();
 
             // NOTE: BE
             let expected = U256::from_be_slice(&peg_in_txid);
