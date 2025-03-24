@@ -159,7 +159,7 @@ dependencies = [
  "revm",
  "serde",
  "serde_json",
- "zkm2-zkvm",
+ "zkm2-zkvm 0.0.1",
 ]
 
 [[package]]
@@ -276,7 +276,7 @@ dependencies = [
  "revm",
  "serde",
  "serde_json",
- "zkm2-zkvm",
+ "zkm2-zkvm 0.0.1",
 ]
 
 [[package]]
@@ -828,7 +828,7 @@ dependencies = [
  "hex",
  "kzg-rs",
  "serde",
- "zkm2-zkvm",
+ "zkm2-zkvm 0.0.1 (git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit)",
 ]
 
 [[package]]
@@ -1157,12 +1157,37 @@ dependencies = [
 [[package]]
 name = "zkm2-lib"
 version = "0.0.1"
+dependencies = [
+ "bincode",
+ "cfg-if",
+ "serde",
+ "sha2",
+]
+
+[[package]]
+name = "zkm2-lib"
+version = "0.0.1"
 source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#378f5ea53fae5ac31fe9b52b9c8f37c415ad8162"
 dependencies = [
  "bincode",
  "cfg-if",
  "serde",
  "sha2",
+]
+
+[[package]]
+name = "zkm2-zkvm"
+version = "0.0.1"
+dependencies = [
+ "bincode",
+ "cfg-if",
+ "getrandom",
+ "lazy_static",
+ "libm",
+ "rand",
+ "serde",
+ "sha2",
+ "zkm2-lib 0.0.1",
 ]
 
 [[package]]
@@ -1178,5 +1203,5 @@ dependencies = [
  "rand",
  "serde",
  "sha2",
- "zkm2-lib",
+ "zkm2-lib 0.0.1 (git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit)",
 ]
