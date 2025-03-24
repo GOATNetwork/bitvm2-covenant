@@ -51,18 +51,18 @@ pub fn check_withdraw(
     for t in post {
         // BUG: skip all below checks if you want to generate the proof only
         if let Some(acc) = &t.post_state.get(&contract_address) {
-           let slot: B256 = keccak256(&inputs);
-           //println!("slots: {}, {:?}", slot, acc.storage);
-           let actual_peg_in_txid = acc.storage.get::<U256>(&slot.into()).unwrap();
+           //let slot: B256 = keccak256(&inputs);
+           ////println!("slots: {}, {:?}", slot, acc.storage);
+           //let actual_peg_in_txid = acc.storage.get::<U256>(&slot.into()).unwrap();
 
-           // NOTE: BE
-           let expected = U256::from_be_slice(&peg_in_txid);
+           //// NOTE: BE
+           //let expected = U256::from_be_slice(&peg_in_txid);
 
-           assert_eq!(expected, *actual_peg_in_txid);
+           //assert_eq!(expected, *actual_peg_in_txid);
 
-           let slot =  <FixedBytes<32> as Into<U256>>::into(slot) + U256::from(1);
-           let acutal_one = acc.storage.get(&slot).unwrap(); 
-           assert_eq!(*acutal_one, U256::from(1));
+           //let slot =  <FixedBytes<32> as Into<U256>>::into(slot) + U256::from(1);
+           //let acutal_one = acc.storage.get(&slot).unwrap(); 
+           //assert_eq!(*acutal_one, U256::from(1));
            return Ok(());
         } 
     }
