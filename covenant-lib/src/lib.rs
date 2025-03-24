@@ -1,4 +1,4 @@
-#![no_std]
+//#![no_std]
 use revm::{
     db::CacheState,
     primitives::{B256, U256, FixedBytes},
@@ -44,13 +44,15 @@ pub fn check_withdraw(
     let contract_address = Address::from_slice(contract_address.as_slice());
     let hex_withdraw_txid = format!("0x{}", hex::encode(withdraw_txid));
     let tx_info: &TestUnit = suite.0.get(&hex_withdraw_txid).unwrap();
-    let post: &Vec<Test> = &tx_info.post.get(&SpecName::Shanghai).unwrap();
+    let post: &Vec<Test> = &tx_info.post.get(&SpecName::Cancun).unwrap();
 
     let mut inputs = withdraw_map_base_key.clone();
     inputs.extend_from_slice(&withdraw_map_index);
     for t in post {
+        // BUG: skip all below checks if you want to generate the proof only
         if let Some(acc) = &t.post_state.get(&contract_address) {
            let slot: B256 = keccak256(&inputs);
+           //println!("slots: {}, {:?}", slot, acc.storage);
            let actual_peg_in_txid = acc.storage.get::<U256>(&slot.into()).unwrap();
 
            // NOTE: BE
@@ -84,8 +86,10 @@ pub fn execute_test_suite(suite: TestSuite) -> Result<(), String> {
 
         let mut env = Env::default();
         // for mainnet
-        env.cfg.chain_id = 1;
+        env.cfg.chain_id = unit.chain_id.unwrap_or(1);
         // env.cfg.spec_id is set down the road
+        env.cfg.disable_base_fee = true;
+        env.cfg.disable_balance_check = true;
 
         // block env
         env.block.number = unit.env.current_number;
@@ -175,6 +179,7 @@ pub fn execute_test_suite(suite: TestSuite) -> Result<(), String> {
                 //let timer = Instant::now();
                 let mut check = || {
                     let exec_result = evm.transact_commit();
+                    //println!("{} {:?}", _txid, exec_result);
 
                     match (&test.expect_exception, &exec_result) {
                         // do nothing
