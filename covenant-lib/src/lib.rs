@@ -1,8 +1,10 @@
 //#![no_std]
 use revm::{
     db::CacheState,
-    primitives::{B256, U256, FixedBytes},
-    primitives::{calc_excess_blob_gas, keccak256, Bytecode, Env, SpecId, TransactTo},
+    primitives::{
+        B256, U256, FixedBytes,
+        calc_excess_blob_gas, keccak256, Bytecode, Env, SpecId, TransactTo
+    },
     Evm,
 };
 

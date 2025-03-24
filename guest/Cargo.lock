@@ -159,7 +159,7 @@ dependencies = [
  "revm",
  "serde",
  "serde_json",
- "zkm2-zkvm 0.0.1",
+ "zkm2-zkvm",
 ]
 
 [[package]]
@@ -276,7 +276,7 @@ dependencies = [
  "revm",
  "serde",
  "serde_json",
- "zkm2-zkvm 0.0.1",
+ "zkm2-zkvm",
 ]
 
 [[package]]
@@ -581,7 +581,7 @@ checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 [[package]]
 name = "models"
 version = "0.1.0"
-source = "git+https://github.com/zkMIPS/revme#0a642785cd9fbcaa79779f8499aae58ea5a48495"
+source = "git+https://github.com/zkMIPS/revme?rev=0a642785cd9fbcaa79779f8499aae58ea5a48495#0a642785cd9fbcaa79779f8499aae58ea5a48495"
 dependencies = [
  "revm",
  "serde",
@@ -828,7 +828,7 @@ dependencies = [
  "hex",
  "kzg-rs",
  "serde",
- "zkm2-zkvm 0.0.1 (git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit)",
+ "zkm2-zkvm",
 ]
 
 [[package]]
@@ -1157,17 +1157,7 @@ dependencies = [
 [[package]]
 name = "zkm2-lib"
 version = "0.0.1"
-dependencies = [
- "bincode",
- "cfg-if",
- "serde",
- "sha2",
-]
-
-[[package]]
-name = "zkm2-lib"
-version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#378f5ea53fae5ac31fe9b52b9c8f37c415ad8162"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
 dependencies = [
  "bincode",
  "cfg-if",
@@ -1178,6 +1168,7 @@ dependencies = [
 [[package]]
 name = "zkm2-zkvm"
 version = "0.0.1"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
 dependencies = [
  "bincode",
  "cfg-if",
@@ -1187,21 +1178,5 @@ dependencies = [
  "rand",
  "serde",
  "sha2",
- "zkm2-lib 0.0.1",
-]
-
-[[package]]
-name = "zkm2-zkvm"
-version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#378f5ea53fae5ac31fe9b52b9c8f37c415ad8162"
-dependencies = [
- "bincode",
- "cfg-if",
- "getrandom",
- "lazy_static",
- "libm",
- "rand",
- "serde",
- "sha2",
- "zkm2-lib 0.0.1 (git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit)",
+ "zkm2-lib",
 ]
