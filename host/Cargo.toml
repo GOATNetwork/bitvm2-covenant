@@ -5,7 +5,11 @@ edition.workspace = true
 
 [dependencies]
 zkm2-sdk = { workspace = true }
+zkm2-prover = { workspace = true }
+zkm2-verifier = { workspace = true }
 hex = { workspace = true }
+ark-bn254 = { version = "0.5" }
+ark-groth16 = { version = "0.5" }
 
 [build-dependencies]
 zkm2-build = { workspace = true }
