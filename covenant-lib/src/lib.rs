@@ -43,6 +43,8 @@ pub fn check_withdraw(
     assert!(withdraw_map_base_key.len() == 32);
     assert!(withdraw_map_index.len() == 32);
 
+    // TODO: check federation signature
+
     let contract_address = Address::from_slice(contract_address.as_slice());
     let hex_withdraw_txid = format!("0x{}", hex::encode(withdraw_txid));
     let tx_info: &TestUnit = suite.0.get(&hex_withdraw_txid).unwrap();
