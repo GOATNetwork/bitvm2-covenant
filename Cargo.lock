@@ -1051,6 +1051,7 @@ dependencies = [
  "models 0.1.0 (git+https://github.com/zkMIPS/revme)",
  "revm 11.0.0 (git+https://github.com/zkMIPS/revm?branch=zkm2)",
  "serde",
+ "serde_cbor",
  "serde_json",
 ]
 

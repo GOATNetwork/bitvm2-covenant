@@ -10,6 +10,7 @@ revm = { git = "https://github.com/zkMIPS/revm", branch = "zkm2", default-featur
 models = { git = "https://github.com/zkMIPS/revme", package = "models" }
 #models = { path = "../../revme/models" } 
 serde = { version = "1.0", default-features = false, features = ["derive", "rc"] }
+serde_cbor = "0.11.2"
 serde_json = { version = "1.0", default-features = false }
 
 k256 = { version = "0.13.3", features = ["ecdsa"], default-features = false }

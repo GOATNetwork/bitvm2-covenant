@@ -6,8 +6,11 @@ use std::fs::File;
 use std::io::Read;
 
 extern crate alloc;
+use alloc::collections::BTreeMap;
 use alloc::string::ToString;
 use alloc::vec::Vec;
+
+use models::TestUnit;
 
 pub fn main() {
     // all private inputs
@@ -40,7 +43,9 @@ pub fn main() {
     let mut tx_list = vec![];
     f.read_to_end(&mut tx_list).unwrap();
 
-    let suite = read_suite(&tx_list);
+    let suite: BTreeMap<String, TestUnit> = serde_json::from_slice(&tx_list).map_err(|e| e).unwrap();
+    let encoded = serde_cbor::to_vec(&suite).unwrap();
+    let suite = read_suite(&encoded);
 
     assert!(check_withdraw(
         &withdraw_contract_address,
