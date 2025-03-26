@@ -26,7 +26,7 @@ use alloc::vec::Vec;
 use revm::primitives::Address;
 
 pub fn read_suite(s: &Vec<u8>) -> TestSuite {
-    let btm: BTreeMap<String, TestUnit> = serde_json::from_slice(s).unwrap();
+    let btm: BTreeMap<String, TestUnit> = serde_cbor::from_slice(s).unwrap();
     TestSuite(btm)
 }
 

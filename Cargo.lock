@@ -1061,6 +1061,10 @@ dependencies = [
  "ark-bn254",
  "ark-groth16",
  "hex",
+ "models 0.1.0 (git+https://github.com/zkMIPS/revme?branch=deserialize)",
+ "serde",
+ "serde_cbor",
+ "serde_json",
  "zkm2-build",
  "zkm2-prover",
  "zkm2-sdk",
@@ -1416,9 +1420,10 @@ dependencies = [
  "hex",
  "k256",
  "libc",
- "models 0.1.0 (git+https://github.com/zkMIPS/revme?rev=0a642785cd9fbcaa79779f8499aae58ea5a48495)",
+ "models 0.1.0 (git+https://github.com/zkMIPS/revme?branch=deserialize)",
  "revm 11.0.0 (git+https://github.com/zkMIPS/revm?branch=zkm2)",
  "serde",
+ "serde_cbor",
  "serde_json",
  "zkm2-zkvm",
 ]
@@ -2426,6 +2431,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "half"
+version = "1.8.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b43ede17f21864e81be2fa654110bf1e793774238d86ef8555c37e6519c0403"
+
+[[package]]
 name = "halo2"
 version = "0.1.0-beta.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3216,9 +3227,9 @@ dependencies = [
 
 [[package]]
 name = "log"
-version = "0.4.26"
+version = "0.4.27"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "30bde2b3dc3671ae49d8e2e9f044c7c005836e7a023ee57cffa25ab82764bb9e"
+checksum = "13dc2df351e3202783a1fe0d44375f7295ffb4049267b0f3018346dc122a1d94"
 
 [[package]]
 name = "lru"
@@ -3314,7 +3325,7 @@ dependencies = [
 [[package]]
 name = "models"
 version = "0.1.0"
-source = "git+https://github.com/zkMIPS/revme?rev=0a642785cd9fbcaa79779f8499aae58ea5a48495#0a642785cd9fbcaa79779f8499aae58ea5a48495"
+source = "git+https://github.com/zkMIPS/revme?branch=deserialize#06632091fb9784241445dfadaf1db299b34e0f2b"
 dependencies = [
  "revm 11.0.0 (git+https://github.com/zkMIPS/revm?branch=zkm2)",
  "serde",
@@ -4062,9 +4073,9 @@ checksum = "e3148f5046208a5d56bcfc03053e3ca6334e51da8dfb19b6cdc8b306fae3283e"
 
 [[package]]
 name = "pest"
-version = "2.7.15"
+version = "2.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8b7cafe60d6cf8e62e1b9b2ea516a089c008945bb5a275416789e7db0bc199dc"
+checksum = "198db74531d58c70a361c42201efde7e2591e976d518caf7662a47dc5720e7b6"
 dependencies = [
  "memchr",
  "thiserror 2.0.12",
@@ -4333,9 +4344,9 @@ dependencies = [
 
 [[package]]
 name = "quinn-udp"
-version = "0.5.10"
+version = "0.5.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e46f3055866785f6b92bc6164b76be02ca8f2eb4b002c0354b28cf4c119e5944"
+checksum = "541d0f57c6ec747a90738a52741d3221f7960e8ac2f0ff4b1a63680e033b4ab5"
 dependencies = [
  "cfg_aliases",
  "libc",
@@ -4834,9 +4845,9 @@ dependencies = [
 
 [[package]]
 name = "ruint"
-version = "1.13.1"
+version = "1.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "825df406ec217a8116bd7b06897c6cc8f65ffefc15d030ae2c9540acc9ed50b6"
+checksum = "78a46eb779843b2c4f21fac5773e25d6d5b7c8f0922876c91541790d2ca27eef"
 dependencies = [
  "alloy-rlp",
  "ark-ff 0.3.0",
@@ -4851,6 +4862,7 @@ dependencies = [
  "primitive-types",
  "proptest",
  "rand 0.8.5",
+ "rand 0.9.0",
  "rlp",
  "ruint-macro",
  "serde",
@@ -4940,7 +4952,7 @@ dependencies = [
  "once_cell",
  "ring 0.17.14",
  "rustls-pki-types",
- "rustls-webpki 0.103.0",
+ "rustls-webpki 0.103.1",
  "subtle",
  "zeroize",
 ]
@@ -4984,9 +4996,9 @@ dependencies = [
 
 [[package]]
 name = "rustls-webpki"
-version = "0.103.0"
+version = "0.103.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0aa4eeac2588ffff23e9d7a7e9b3f971c5fb5b7ebc9452745e0c232c64f83b2f"
+checksum = "fef8b8769aaccf73098557a87cd1816b4f9c7c16811c9c77142aa695c16f2c03"
 dependencies = [
  "ring 0.17.14",
  "rustls-pki-types",
@@ -5159,6 +5171,16 @@ version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "38636132857f68ec3d5f3eb121166d2af33cb55174c4d5ff645db6165cbef0fd"
 dependencies = [
+ "serde",
+]
+
+[[package]]
+name = "serde_cbor"
+version = "0.11.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2bef2ebfde456fb76bbcf9f59315333decc4fda0b2b44b420243c11e0f5ec1f5"
+dependencies = [
+ "half",
  "serde",
 ]
 
@@ -5607,7 +5629,7 @@ dependencies = [
 [[package]]
 name = "test-artifacts"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "zkm2-build",
 ]
@@ -6860,7 +6882,7 @@ dependencies = [
 [[package]]
 name = "zkm2-build"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "anyhow",
  "cargo_metadata",
@@ -6872,7 +6894,7 @@ dependencies = [
 [[package]]
 name = "zkm2-core-executor"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "anyhow",
  "bincode",
@@ -6913,7 +6935,7 @@ dependencies = [
 [[package]]
 name = "zkm2-core-machine"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "bincode",
  "cfg-if",
@@ -6964,7 +6986,7 @@ dependencies = [
 [[package]]
 name = "zkm2-curves"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "cfg-if",
  "curve25519-dalek",
@@ -6986,7 +7008,7 @@ dependencies = [
 [[package]]
 name = "zkm2-derive"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "quote",
  "syn 1.0.109",
@@ -6995,7 +7017,7 @@ dependencies = [
 [[package]]
 name = "zkm2-lib"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "bincode",
  "cfg-if",
@@ -7006,7 +7028,7 @@ dependencies = [
 [[package]]
 name = "zkm2-primitives"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "bincode",
  "hex",
@@ -7024,7 +7046,7 @@ dependencies = [
 [[package]]
 name = "zkm2-prover"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "anyhow",
  "bincode",
@@ -7063,7 +7085,7 @@ dependencies = [
 [[package]]
 name = "zkm2-recursion-circuit"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "hashbrown 0.14.5",
  "itertools 0.13.0",
@@ -7096,7 +7118,7 @@ dependencies = [
 [[package]]
 name = "zkm2-recursion-compiler"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "backtrace",
  "itertools 0.13.0",
@@ -7117,7 +7139,7 @@ dependencies = [
 [[package]]
 name = "zkm2-recursion-core"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "backtrace",
  "ff 0.13.1",
@@ -7153,7 +7175,7 @@ dependencies = [
 [[package]]
 name = "zkm2-recursion-derive"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "quote",
  "syn 1.0.109",
@@ -7162,7 +7184,7 @@ dependencies = [
 [[package]]
 name = "zkm2-recursion-gnark-ffi"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "anyhow",
  "bincode",
@@ -7187,7 +7209,7 @@ dependencies = [
 [[package]]
 name = "zkm2-sdk"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "alloy-signer",
  "alloy-signer-local",
@@ -7229,7 +7251,7 @@ dependencies = [
 [[package]]
 name = "zkm2-stark"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "arrayref",
  "hashbrown 0.14.5",
@@ -7271,7 +7293,7 @@ dependencies = [
 [[package]]
 name = "zkm2-verifier"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "anyhow",
  "ark-bn254",
@@ -7290,7 +7312,7 @@ dependencies = [
 [[package]]
 name = "zkm2-zkvm"
 version = "0.0.1"
-source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#526c016e9f3f967c29b57845d0b9c63356e0ccd4"
+source = "git+https://github.com/zkMIPS/zkm2?branch=dev%2Finit#5393c96f6029829652d3e151361203354c922c0e"
 dependencies = [
  "bincode",
  "cfg-if",

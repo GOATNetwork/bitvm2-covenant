@@ -13,7 +13,7 @@ serde = { version = "1.0", default-features = false, features = ["derive", "rc"]
 serde_json = { version = "1.0", default-features = false }
 
 k256 = { version = "0.13.3", features = ["ecdsa"], default-features = false }
-libc = { version = "0.2" , features = ["extra_traits"] }
+libc = { version = "0.2", features = ["extra_traits"] }
 hex = "0.4.3"
 
 covenant-lib = { path = "../covenant-lib" }

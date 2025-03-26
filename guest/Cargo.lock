@@ -275,6 +275,7 @@ dependencies = [
  "models",
  "revm",
  "serde",
+ "serde_cbor",
  "serde_json",
  "zkm2-zkvm",
 ]
@@ -462,6 +463,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "half"
+version = "1.8.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b43ede17f21864e81be2fa654110bf1e793774238d86ef8555c37e6519c0403"
+
+[[package]]
 name = "hashbrown"
 version = "0.14.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -581,7 +588,7 @@ checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 [[package]]
 name = "models"
 version = "0.1.0"
-source = "git+https://github.com/zkMIPS/revme?rev=0a642785cd9fbcaa79779f8499aae58ea5a48495#0a642785cd9fbcaa79779f8499aae58ea5a48495"
+source = "git+https://github.com/zkMIPS/revme?branch=deserialize#06632091fb9784241445dfadaf1db299b34e0f2b"
 dependencies = [
  "revm",
  "serde",
@@ -918,6 +925,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5f0e2c6ed6606019b4e29e69dbaba95b11854410e5347d525002456dbbb786b6"
 dependencies = [
  "serde_derive",
+]
+
+[[package]]
+name = "serde_cbor"
+version = "0.11.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2bef2ebfde456fb76bbcf9f59315333decc4fda0b2b44b420243c11e0f5ec1f5"
+dependencies = [
+ "half",
+ "serde",
 ]
 
 [[package]]

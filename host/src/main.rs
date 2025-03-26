@@ -1,7 +1,11 @@
+extern crate alloc;
+
 use std::env;
 use std::fs::File;
 use std::io::Read;
 
+use alloc::collections::BTreeMap;
+use models::TestUnit;
 use ark_bn254::Bn254;
 use ark_groth16::{r1cs_to_qap::LibsnarkReduction, Groth16};
 use zkm2_prover::build::groth16_bn254_artifacts_dev_dir;
@@ -33,14 +37,16 @@ fn prove_revm() {
         hex::decode(std::env::var("PEG_IN_TXID").unwrap_or("32bc8a6c5b3649f92812c461083bab5e8f3fe4516d792bb9a67054ba040b7988".to_string())).unwrap();
     stdin.write(&peg_in_txid);
 
-    // 1. split ELF into segs
     let manifest_path = std::env::var("CARGO_MANIFEST_DIR").unwrap();
     let json_path =
         env::var("JSON_PATH").unwrap_or(format!("{}/../test-vectors/3168249.json", manifest_path));
     let mut f = File::open(json_path).unwrap();
     let mut data = vec![];
     f.read_to_end(&mut data).unwrap();
-    stdin.write(&data);
+
+    let suite: BTreeMap<String, TestUnit> = serde_json::from_slice(&data).map_err(|e| e).unwrap();
+    let encoded = serde_cbor::to_vec(&suite).unwrap();
+    stdin.write(&encoded);
 
     // Create a `ProverClient` method.
     let client = ProverClient::new();
