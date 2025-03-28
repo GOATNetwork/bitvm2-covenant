@@ -4,8 +4,6 @@ use std::env;
 use std::fs::File;
 use std::io::Read;
 
-use alloc::collections::BTreeMap;
-use models::TestUnit;
 use ark_bn254::Bn254;
 use ark_groth16::{r1cs_to_qap::LibsnarkReduction, Groth16};
 use zkm2_prover::build::groth16_bn254_artifacts_dev_dir;
@@ -44,9 +42,8 @@ fn prove_revm() {
     let mut data = vec![];
     f.read_to_end(&mut data).unwrap();
 
-    let suite: BTreeMap<String, TestUnit> = serde_json::from_slice(&data).map_err(|e| e).unwrap();
-    let encoded = serde_cbor::to_vec(&suite).unwrap();
-    stdin.write(&encoded);
+    let encoded = guest_std::cbor_serialize(&data);
+    stdin.write_vec(encoded);
 
     // Create a `ProverClient` method.
     let client = ProverClient::new();

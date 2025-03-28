@@ -1,4 +1,4 @@
-use covenant_lib::{check_withdraw, execute_test_suite, read_suite};
+use covenant_lib::{execute_test_suite, check_withdraw, read_suite};
 
 extern crate libc;
 
@@ -6,11 +6,8 @@ use std::fs::File;
 use std::io::Read;
 
 extern crate alloc;
-use alloc::collections::BTreeMap;
 use alloc::string::ToString;
 use alloc::vec::Vec;
-
-use models::TestUnit;
 
 pub fn main() {
     // all private inputs
@@ -35,7 +32,6 @@ pub fn main() {
     let peg_in_txid: Vec<u8> =
         hex::decode(std::env::var("PEG_IN_TXID").unwrap_or("32bc8a6c5b3649f92812c461083bab5e8f3fe4516d792bb9a67054ba040b7988".to_string())).unwrap();
 
-    //let tx_list: Vec<u8> = zkm2_zkvm::io::read();
     let manifest_path = std::env::var("CARGO_MANIFEST_DIR").unwrap();
     let json_path = std::env::var("JSON_PATH")
         .unwrap_or(format!("{}/../test-vectors/3168249.json", manifest_path));
@@ -43,8 +39,7 @@ pub fn main() {
     let mut tx_list = vec![];
     f.read_to_end(&mut tx_list).unwrap();
 
-    let suite: BTreeMap<String, TestUnit> = serde_json::from_slice(&tx_list).map_err(|e| e).unwrap();
-    let encoded = serde_cbor::to_vec(&suite).unwrap();
+    let encoded = guest_std::cbor_serialize(&tx_list);
     let suite = read_suite(&encoded);
 
     assert!(check_withdraw(
@@ -58,8 +53,4 @@ pub fn main() {
     .is_ok());
     assert!(execute_test_suite(suite).is_ok());
     println!("finish");
-
-    // public inputs
-    //zkm2_zkvm::io::commit(&goat_withdraw_txid);
-    //zkm2_zkvm::io::commit(&withdraw_contract_address);
 }

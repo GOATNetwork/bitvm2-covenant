@@ -155,10 +155,7 @@ dependencies = [
  "covenant-lib",
  "k256",
  "libc",
- "models",
  "revm",
- "serde",
- "serde_json",
  "zkm2-zkvm",
 ]
 
@@ -269,14 +266,12 @@ checksum = "6245d59a3e82a7fc217c5828a6692dbc6dfb63a0c8c90495621f7b9d79704a0e"
 name = "covenant-lib"
 version = "1.1.0"
 dependencies = [
+ "guest",
  "hex",
  "k256",
  "libc",
  "models",
  "revm",
- "serde",
- "serde_cbor",
- "serde_json",
  "zkm2-zkvm",
 ]
 
@@ -463,6 +458,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "guest"
+version = "1.1.0"
+source = "git+https://github.com/zkMIPS/revme?branch=cbor-zkm2#26b7f5a23e6d86870e34963b798e16fcbc0b2729"
+dependencies = [
+ "k256",
+ "libc",
+ "models",
+ "revm",
+ "serde",
+ "serde_cbor",
+ "serde_json",
+]
+
+[[package]]
 name = "half"
 version = "1.8.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -588,7 +597,7 @@ checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 [[package]]
 name = "models"
 version = "0.1.0"
-source = "git+https://github.com/zkMIPS/revme?branch=deserialize#06632091fb9784241445dfadaf1db299b34e0f2b"
+source = "git+https://github.com/zkMIPS/revme?branch=cbor-zkm2#26b7f5a23e6d86870e34963b798e16fcbc0b2729"
 dependencies = [
  "revm",
  "serde",
