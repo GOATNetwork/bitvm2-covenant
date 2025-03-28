@@ -39,8 +39,8 @@ pub fn main() {
     let mut tx_list = vec![];
     f.read_to_end(&mut tx_list).unwrap();
 
-    let encoded = guest_std::cbor_serialize(&tx_list);
-    let suite = read_suite(&encoded);
+    let encoded = guest_std::cbor_serialize(&tx_list).unwrap();
+    let suite = read_suite(&encoded).unwrap();
 
     assert!(check_withdraw(
         &withdraw_contract_address,

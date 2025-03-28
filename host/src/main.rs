@@ -42,7 +42,7 @@ fn prove_revm() {
     let mut data = vec![];
     f.read_to_end(&mut data).unwrap();
 
-    let encoded = guest_std::cbor_serialize(&data);
+    let encoded = guest_std::cbor_serialize(&data).unwrap();
     stdin.write_vec(encoded);
 
     // Create a `ProverClient` method.

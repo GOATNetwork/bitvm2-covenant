@@ -12,8 +12,8 @@ extern crate libc;
 
 use covenant_lib::{
     execute_test_suite,
-    read_suite,
     check_withdraw,
+    read_suite,
 };
 
 extern crate alloc;
@@ -39,7 +39,7 @@ pub fn main() {
     let peg_in_txid: Vec<u8> = zkm2_zkvm::io::read(); 
     let tx_list: Vec<u8> = zkm2_zkvm::io::read_vec();
 
-    let suite = read_suite(&tx_list);
+    let suite = read_suite(&tx_list).unwrap();
 
     assert!(check_withdraw(
         &withdraw_contract_address,
